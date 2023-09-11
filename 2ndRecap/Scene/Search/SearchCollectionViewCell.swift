@@ -7,10 +7,19 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class SearchCollectionViewCell: BaseCollectionViewCell {
     
     var data: ItemResult?
+    
+    var like: Bool = false {
+        didSet {
+            self.configureCell()
+        }
+    }
+    
+    var completionHandler: ((Bool) -> ())?
     
     let imageView = {
         let view = UIImageView()
@@ -59,23 +68,47 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         view.setImage(UIImage(systemName: "heart"), for: .normal)
         view.tintColor = .black
         view.backgroundColor = .white
-//        view.layer.borderWidth = Constants.Design.borderWidth
-//        view.layer.cornerRadius = view.bounds.width / 2
-//        view.layer.masksToBounds = true
-//        view.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         return view
     }()
-    
-    @objc func likeButtonClicked() {
-        print("like")
-    }
+
+
     
     override func layoutSubviews() { //mainview를 따로 만들어야하나?...
         super.layoutSubviews()
         likeButton.layer.cornerRadius = likeButton.bounds.width / 2
     }
     
+    func inputAPIData(data: ItemResult) {
+        imageView.kf.setImage(with: URL(string: data.image))
+        mallNameLabel.text = "[\(data.mallName)]"
+        titleLabel.text = data.title.removeTags()
 
+        priceLabel.text = decimalFormat(price: Int(data.lprice) ?? 0)
+        
+        like = data.like
+        
+        if !like {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+    }
+
+    func inputRealmData(data: LikedTable) {
+        imageView.kf.setImage(with: URL(string: data.itemImageURL))
+        mallNameLabel.text = "[\(data.itemMallName)]"
+        titleLabel.text = data.itemTitle.removeTags()
+
+        priceLabel.text = decimalFormat(price: Int(data.itemLprice) ?? 0)
+        
+        like = data.like
+        
+        if !like {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+    }
     
     override func configureCell() {
         [imageView, mallNameLabel, titleLabel, priceLabel, likeButton].forEach {
@@ -83,7 +116,6 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         }
         
         likeButton.becomeFirstResponder()
-        
     }
     
     override func setConstraints() {
@@ -95,20 +127,16 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         mallNameLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(5)
             make.horizontalEdges.equalToSuperview().inset(5)
-//            make.height.equalTo(10)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(mallNameLabel.snp.bottom).offset(5)
             make.horizontalEdges.equalToSuperview().inset(5)
-//            make.height.equalTo(20)
         }
         
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.horizontalEdges.equalToSuperview().inset(5)
-
-//            make.height.equalTo(10)
         }
         
         likeButton.snp.makeConstraints { make in
@@ -119,5 +147,13 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         }
         
         
+    }
+}
+
+extension SearchCollectionViewCell {
+    private func decimalFormat(price: Int) -> String? {
+        let numberFommater: NumberFormatter = NumberFormatter()
+        numberFommater.numberStyle = .decimal
+        return numberFommater.string(for: price)
     }
 }

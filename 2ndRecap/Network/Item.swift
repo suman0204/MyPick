@@ -26,7 +26,9 @@ struct ItemResult: Codable {
     let category2: String
     let category3: String
     let category4: String
-
+    
+    var like: Bool = false
+    
     enum CodingKeys: String, CodingKey {
         case title, link, image, lprice, hprice, mallName
         case productID = "productId"

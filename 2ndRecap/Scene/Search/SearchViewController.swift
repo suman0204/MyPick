@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: BaseViewController {
     
+    var tasks: Results<LikedTable>!
+    
+    let repository = LikedTableRepository()
+    
     var itemResultList: [ItemResult] = []
     
-    var page = 1
+    private var page = 1
     
     var sortType: SortType = SortType.sim
     
@@ -80,6 +85,8 @@ class SearchViewController: BaseViewController {
         
         searchResultsCollectionView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         
+        tasks = repository.fetch()
+        print(tasks)
         addTargetSortButton()
         
     }
@@ -167,17 +174,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
 
-        let data = itemResultList[indexPath.item]
+        var data = itemResultList[indexPath.item]
 //        print("cellforitemat")
 //        print(data)
         
-        cell.imageView.kf.setImage(with: URL(string: data.image))
-        cell.mallNameLabel.text = "[\(data.mallName)]"
-        cell.titleLabel.text = data.title.removeTags()
-
-        cell.priceLabel.text = decimalFormat(price: Int(data.lprice) ?? 0)
+        cell.inputAPIData(data: data)
         
-//        cell.likeButton.becomeFirstResponder()
         cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
 
         
@@ -194,8 +196,36 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func likeButtonClicked() {
+    @objc func likeButtonClicked(_ sender: UIButton) {
         print("like")
+        if let cell = sender.superview?.superview as? SearchCollectionViewCell,
+           let indexPath = searchResultsCollectionView.indexPath(for: cell) {
+            var selectedItem = itemResultList[indexPath.item]
+            selectedItem.like.toggle() // like 상태를 반전시킴
+            print("dd",selectedItem)
+            itemResultList[indexPath.item] = selectedItem
+
+            cell.like = selectedItem.like
+            
+            if !selectedItem.like {
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                
+                repository.deleteItem(id: selectedItem.productID)
+                LikedViewController().searchResultsCollectionView.reloadData()
+            } else {
+                cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                
+                let path = documentDirectoryPath()
+                print(path)
+                
+                let task = LikedTable(id: selectedItem.productID, title: selectedItem.title, mallName: selectedItem.mallName, lprice: selectedItem.lprice, imageURL: selectedItem.image, likedDate: Date(), like: selectedItem.like)
+                
+                repository.createItem(task)
+            }
+//            searchResultsCollectionView.reloadItems(at: [indexPath])
+
+        }
+        
     }
     
     
@@ -248,13 +278,13 @@ extension SearchViewController: UISearchBarDelegate {
 
 
 extension SearchViewController {
-    func decimalFormat(price: Int) -> String? {
+    private func decimalFormat(price: Int) -> String? {
         let numberFommater: NumberFormatter = NumberFormatter()
         numberFommater.numberStyle = .decimal
         return numberFommater.string(for: price)
     }
     
-    @objc func simButtonClicked() {
+    @objc private func simButtonClicked() {
         
         changeButtonStyle(toWhite: simButton, toBlack: [dateButton, ascButton, dscButton])
 
@@ -288,7 +318,7 @@ extension SearchViewController {
         }
     }
     
-    @objc func dateButtonClicked() {
+    @objc private func dateButtonClicked() {
         
         changeButtonStyle(toWhite: dateButton, toBlack: [simButton, ascButton, dscButton])
         
@@ -322,7 +352,7 @@ extension SearchViewController {
         }
     }
     
-    @objc func ascButtonClicked(){
+    @objc private func ascButtonClicked(){
         
         changeButtonStyle(toWhite: ascButton, toBlack: [simButton, dateButton, dscButton])
         
@@ -357,7 +387,7 @@ extension SearchViewController {
         }
     }
     
-    @objc func dscButtonClicked(){
+    @objc private func dscButtonClicked(){
         
         changeButtonStyle(toWhite: dscButton, toBlack: [simButton, dateButton, ascButton])
         
@@ -390,19 +420,19 @@ extension SearchViewController {
         }
     }
     
-    func addTargetSortButton() {
+    private func addTargetSortButton() {
         simButton.addTarget(self, action: #selector(simButtonClicked), for: .touchUpInside)
         dateButton.addTarget(self, action: #selector(dateButtonClicked), for: .touchUpInside)
         ascButton.addTarget(self, action: #selector(ascButtonClicked), for: .touchUpInside)
         dscButton.addTarget(self, action: #selector(dscButtonClicked), for: .touchUpInside)
     }
     
-    func scrollToTop() {
+    private func scrollToTop() {
         let desiredOffset = CGPoint(x: 0, y: -searchResultsCollectionView.contentInset.top)
         searchResultsCollectionView.setContentOffset(desiredOffset, animated: true)
     }
     
-    func requestInsertWord() {
+    private func requestInsertWord() {
         let alert = UIAlertController(title: "검색어를 입력하세요", message: "검색어 입력 후 검색해주세요!", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "확인", style: .default)
@@ -413,7 +443,7 @@ extension SearchViewController {
 
     }
     
-    func noResultAlert() {
+    private func noResultAlert() {
         let alert = UIAlertController(title: "검색 결과가 없습니다", message: "다른 검색어를 입력해주세요", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "확인", style: .default)
@@ -423,7 +453,7 @@ extension SearchViewController {
         present(alert, animated: true)
     }
     
-    func changeToWhiteButton(button: UIButton) {
+    private func changeToWhiteButton(button: UIButton) {
         button.layer.cornerRadius = Constants.Design.cornerRadius
         button.layer.borderWidth = Constants.Design.borderWidth
         button.layer.borderColor = Constants.BaseColor.border
@@ -432,7 +462,7 @@ extension SearchViewController {
         button.backgroundColor = .white
     }
     
-    func changeToGrayBorderButton(button: UIButton) {
+    private func changeToGrayBorderButton(button: UIButton) {
         button.layer.cornerRadius = Constants.Design.cornerRadius
         button.layer.borderWidth = Constants.Design.borderWidth
         button.layer.borderColor = Constants.BaseColor.placeholder.cgColor
@@ -441,7 +471,7 @@ extension SearchViewController {
         button.backgroundColor = .black
     }
     
-    func changeButtonStyle(toWhite: UIButton, toBlack: [UIButton]) {
+    private func changeButtonStyle(toWhite: UIButton, toBlack: [UIButton]) {
         changeToWhiteButton(button: toWhite)
         
         toBlack.forEach {

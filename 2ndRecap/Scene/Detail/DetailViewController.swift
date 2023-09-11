@@ -45,8 +45,9 @@ class DetailViewController: BaseViewController {
             return
         }
         
-        let url = URL(string: "https://msearch.shopping.naver.com/product/\(productID)")
-        let request = URLRequest(url: url!)
+//        let url = URL(string: "https://msearch.shopping.naver.com/product/\(productID)")
+        let url = URL.makeDetailURLEndPoint(endPoint: productID)
+        let request = URLRequest(url: url)
         itemDetailWebView.load(request)
         
         let navAppearance = UINavigationBarAppearance()

@@ -36,6 +36,9 @@
 		8B6CC29E2AADFAD3002FA6A0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC29D2AADFAD3002FA6A0 /* DetailViewController.swift */; };
 		8B6CC2A02AAE1A6D002FA6A0 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC29F2AAE1A6D002FA6A0 /* String+Extension.swift */; };
 		8B6CC2A22AAE3C4C002FA6A0 /* WhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2A12AAE3C4C002FA6A0 /* WhiteButton.swift */; };
+		8B6CC2DB2AAEDBF1002FA6A0 /* LikedTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2DA2AAEDBF1002FA6A0 /* LikedTable.swift */; };
+		8B6CC2DD2AAF199A002FA6A0 /* LikedTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2DC2AAF199A002FA6A0 /* LikedTableRepository.swift */; };
+		8B6CC2DF2AAF25CC002FA6A0 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,9 @@
 		8B6CC29D2AADFAD3002FA6A0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8B6CC29F2AAE1A6D002FA6A0 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8B6CC2A12AAE3C4C002FA6A0 /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
+		8B6CC2DA2AAEDBF1002FA6A0 /* LikedTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedTable.swift; sourceTree = "<group>"; };
+		8B6CC2DC2AAF199A002FA6A0 /* LikedTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedTableRepository.swift; sourceTree = "<group>"; };
+		8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 		8B6CC2452AAA278D002FA6A0 /* 2ndRecap */ = {
 			isa = PBXGroup;
 			children = (
+				8B6CC2D92AAEDBCD002FA6A0 /* Realm */,
 				8B6CC2692AAA28F4002FA6A0 /* Network */,
 				8B6CC27F2AAB217E002FA6A0 /* Utility */,
 				8B6CC26C2AAA2DEF002FA6A0 /* Base */,
@@ -191,8 +198,18 @@
 				8B6CC2822AAB2235002FA6A0 /* Color.swift */,
 				8B6CC2982AACDAC5002FA6A0 /* URL+Extension.swift */,
 				8B6CC29F2AAE1A6D002FA6A0 /* String+Extension.swift */,
+				8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		8B6CC2D92AAEDBCD002FA6A0 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				8B6CC2DA2AAEDBF1002FA6A0 /* LikedTable.swift */,
+				8B6CC2DC2AAF199A002FA6A0 /* LikedTableRepository.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,9 +311,12 @@
 				8B6CC29E2AADFAD3002FA6A0 /* DetailViewController.swift in Sources */,
 				8B6CC2812AAB21D8002FA6A0 /* Constants.swift in Sources */,
 				8B6CC2992AACDAC5002FA6A0 /* URL+Extension.swift in Sources */,
+				8B6CC2DD2AAF199A002FA6A0 /* LikedTableRepository.swift in Sources */,
 				8B6CC2832AAB2235002FA6A0 /* Color.swift in Sources */,
+				8B6CC2DF2AAF25CC002FA6A0 /* FileManager+Extension.swift in Sources */,
 				8B6CC2492AAA278D002FA6A0 /* SceneDelegate.swift in Sources */,
 				8B6CC27D2AAB16FF002FA6A0 /* BaseCollectionViewCell.swift in Sources */,
+				8B6CC2DB2AAEDBF1002FA6A0 /* LikedTable.swift in Sources */,
 				8B6CC2852AAB2559002FA6A0 /* SearchCollectionViewCell.swift in Sources */,
 				8B6CC2932AAC8A95002FA6A0 /* SortType.swift in Sources */,
 				8B6CC28D2AAC537F002FA6A0 /* ReusableViewProtocol.swift in Sources */,
