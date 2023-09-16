@@ -41,6 +41,7 @@
 		8B6CC3242AB57533002FA6A0 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC3232AB57533002FA6A0 /* ViewType.swift */; };
 		8B6CC3282AB5AAA4002FA6A0 /* LikedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC3272AB5AAA4002FA6A0 /* LikedEmptyView.swift */; };
 		8B6CC32A2AB5ABDF002FA6A0 /* LikedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC3292AB5ABDF002FA6A0 /* LikedViewController.swift */; };
+		8B6CC32C2AB5C7EB002FA6A0 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC32B2AB5C7EB002FA6A0 /* ViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		8B6CC3232AB57533002FA6A0 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		8B6CC3272AB5AAA4002FA6A0 /* LikedEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedEmptyView.swift; sourceTree = "<group>"; };
 		8B6CC3292AB5ABDF002FA6A0 /* LikedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LikedViewController.swift; path = ../../../../../../../../.Trash/LikedViewController.swift; sourceTree = "<group>"; };
+		8B6CC32B2AB5C7EB002FA6A0 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 				8B6CC29F2AAE1A6D002FA6A0 /* String+Extension.swift */,
 				8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */,
 				8B6CC3232AB57533002FA6A0 /* ViewType.swift */,
+				8B6CC32B2AB5C7EB002FA6A0 /* ViewController+Extension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				8B6CC2992AACDAC5002FA6A0 /* URL+Extension.swift in Sources */,
 				8B6CC2DD2AAF199A002FA6A0 /* LikedTableRepository.swift in Sources */,
 				8B6CC2832AAB2235002FA6A0 /* Color.swift in Sources */,
+				8B6CC32C2AB5C7EB002FA6A0 /* ViewController+Extension.swift in Sources */,
 				8B6CC2DF2AAF25CC002FA6A0 /* FileManager+Extension.swift in Sources */,
 				8B6CC2492AAA278D002FA6A0 /* SceneDelegate.swift in Sources */,
 				8B6CC27D2AAB16FF002FA6A0 /* BaseCollectionViewCell.swift in Sources */,

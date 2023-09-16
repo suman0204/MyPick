@@ -33,6 +33,13 @@ struct ItemResult: Codable {
         return title.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
     }
     
+    var decimalPrice: String {
+        let numberFommater: NumberFormatter = NumberFormatter()
+        numberFommater.numberStyle = .decimal
+        let decimalPrice = Int(lprice)
+        return numberFommater.string(for: decimalPrice) ?? "0"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case title, link, image, lprice, hprice, mallName
         case productID = "productId"

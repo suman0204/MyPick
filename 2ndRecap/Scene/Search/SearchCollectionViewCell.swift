@@ -19,7 +19,7 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    var completionHandler: ((Bool) -> ())?
+//    var completionHandler: ((Bool) -> ())?
     
     let imageView = {
         let view = UIImageView()
@@ -76,17 +76,8 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
     func inputAPIData(data: ItemResult) {
         imageView.kf.setImage(with: URL(string: data.image))
         mallNameLabel.text = "[\(data.mallName)]"
-        titleLabel.text = data.title.removeTags()
-
-        priceLabel.text = decimalFormat(price: Int(data.lprice) ?? 0)
-        
-//        like = data.like
-//        
-//        if !like {
-//            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-//        } else {
-//            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//        }
+        titleLabel.text = data.noTagTitle
+        priceLabel.text = data.decimalPrice
     }
 
     func inputRealmData(data: LikedTable) {
@@ -94,7 +85,7 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         mallNameLabel.text = "[\(data.itemMallName)]"
         titleLabel.text = data.itemTitle.removeTags()
 
-        priceLabel.text = decimalFormat(price: Int(data.itemLprice) ?? 0)
+        priceLabel.text = data.itemLprice
         
         like = data.like
         
@@ -110,8 +101,6 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         print(#function)
         print(likeButton.bounds.width / 2)
         likeButton.layer.cornerRadius = likeButton.bounds.width / 2
-        
-
     }
     
     override func configureCell() {
@@ -154,22 +143,12 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         print(likeButton.bounds.width / 2)
     }
     
-//    @objc func likeButtonClicked(toTrue: (()-> Void), toFalse: (() -> Void)) {
-//        print(likeButton.currentImage)
-//        if likeButton.currentImage == UIImage(systemName: "heart") {
-//            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//            toTrue()
-//        } else {
-//            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-//            toFalse()
-//        }
-//    }
 }
 
-extension SearchCollectionViewCell {
-    private func decimalFormat(price: Int) -> String? {
-        let numberFommater: NumberFormatter = NumberFormatter()
-        numberFommater.numberStyle = .decimal
-        return numberFommater.string(for: price)
-    }
-}
+//extension SearchCollectionViewCell {
+//    private func decimalFormat(price: Int) -> String? {
+//        let numberFommater: NumberFormatter = NumberFormatter()
+//        numberFommater.numberStyle = .decimal
+//        return numberFommater.string(for: price)
+//    }
+//}

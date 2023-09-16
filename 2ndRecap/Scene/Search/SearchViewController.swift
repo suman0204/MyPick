@@ -290,7 +290,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
                 print("heart")
                 cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 
-                let task = LikedTable(id: selectedItem.productID, title: selectedItem.title, mallName: selectedItem.mallName, lprice: selectedItem.lprice, imageURL: selectedItem.image, likedDate: Date(), like: true)
+                let task = LikedTable(id: selectedItem.productID, title: selectedItem.noTagTitle, mallName: selectedItem.mallName, lprice: selectedItem.decimalPrice, imageURL: selectedItem.image, likedDate: Date(), like: true)
                 
                 repository.createItem(task)
 
@@ -551,26 +551,26 @@ extension SearchViewController {
         searchResultsCollectionView.setContentOffset(desiredOffset, animated: true)
     }
     
-    private func requestInsertWord() {
-        let alert = UIAlertController(title: "검색어를 입력하세요", message: "검색어 입력 후 검색해주세요!", preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: "확인", style: .default)
-        
-        alert.addAction(ok)
-        
-        present(alert, animated: true)
-
-    }
+//    private func requestInsertWord() {
+//        let alert = UIAlertController(title: "검색어를 입력하세요", message: "검색어 입력 후 검색해주세요!", preferredStyle: .alert)
+//
+//        let ok = UIAlertAction(title: "확인", style: .default)
+//
+//        alert.addAction(ok)
+//
+//        present(alert, animated: true)
+//
+//    }
     
-    private func noResultAlert() {
-        let alert = UIAlertController(title: "검색 결과가 없습니다", message: "다른 검색어를 입력해주세요", preferredStyle: .alert)
-        
-        let ok = UIAlertAction(title: "확인", style: .default)
-        
-        alert.addAction(ok)
-        
-        present(alert, animated: true)
-    }
+//    private func noResultAlert() {
+//        let alert = UIAlertController(title: "검색 결과가 없습니다", message: "다른 검색어를 입력해주세요", preferredStyle: .alert)
+//
+//        let ok = UIAlertAction(title: "확인", style: .default)
+//
+//        alert.addAction(ok)
+//
+//        present(alert, animated: true)
+//    }
     
     private func changeToWhiteButton(button: UIButton) {
         button.layer.cornerRadius = Constants.Design.cornerRadius

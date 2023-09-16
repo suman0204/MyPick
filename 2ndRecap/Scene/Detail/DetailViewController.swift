@@ -11,11 +11,11 @@ import RealmSwift
 
 class DetailViewController: BaseViewController {
     
-    var tasks: Results<LikedTable>!
+    private var tasks: Results<LikedTable>!
     
-    var repository = LikedTableRepository()
+    private var repository = LikedTableRepository()
     
-    var itemDetailWebView: WKWebView = WKWebView()
+    private var itemDetailWebView: WKWebView = WKWebView()
     
     var navTitle: String?
     
@@ -23,9 +23,56 @@ class DetailViewController: BaseViewController {
 //    var likedInfo: LikedTable?
     var productID: String?
     
-    var viewType: ViewType?
+//    var viewType: ViewType?
     
-    lazy var likeBarButton: UIBarButtonItem = {
+    private let bottomToolbar = {
+        let view = UIToolbar()
+        view.tintColor = .black
+        view.barStyle = .default
+        return view
+    }()
+    
+    private lazy var backBarButton: UIBarButtonItem = {
+        let view = UIBarButtonItem()
+        view.target = self
+        view.style = .plain
+        view.action = #selector(goBackButtonClicked)
+        view.tintColor = .black
+        view.image = UIImage(systemName: "chevron.backward")
+        return view
+    }()
+    
+    private lazy var forwardBarButton: UIBarButtonItem = {
+        let view = UIBarButtonItem()
+        view.target = self
+        view.style = .plain
+        view.action = #selector(goForwardButtonClicked)
+        view.tintColor = .black
+        view.image = UIImage(systemName: "chevron.forward")
+        return view
+    }()
+    
+    private lazy var reloadBarButton: UIBarButtonItem = {
+        let view = UIBarButtonItem()
+        view.target = self
+        view.style = .plain
+        view.action = #selector(reloadButtonClicked)
+        view.tintColor = .black
+        view.image = UIImage(systemName: "goforward")
+        return view
+    }()
+    
+    private lazy var stopBarButton: UIBarButtonItem = {
+        let view = UIBarButtonItem()
+        view.target = self
+        view.style = .plain
+        view.action = #selector(stopButtonClicked)
+        view.tintColor = .black
+        view.image = UIImage(systemName: "xmark")
+        return view
+    }()
+    
+    private lazy var likeBarButton: UIBarButtonItem = {
         let view = UIBarButtonItem()
         view.target = self
         view.style = .plain
@@ -50,11 +97,6 @@ class DetailViewController: BaseViewController {
         
 //        setNavTitle()
         
-
-
-//        UIBarButtonItemAppearance.setValue(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
-//        let likeButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(likeBarButtonClicked))
-//        likeButton.tintColor = .white
         
         if (tasks.first(where: { $0.itemID == productID}) != nil) {
             print("잇어요")
@@ -64,7 +106,9 @@ class DetailViewController: BaseViewController {
             likeBarButton.image = UIImage(systemName: "heart")
 
         }
-        
+        navigationController?.setToolbarHidden(false, animated: true)
+        setupToolBar()
+
         navigationItem.rightBarButtonItem = likeBarButton
     }
     
@@ -98,7 +142,7 @@ class DetailViewController: BaseViewController {
                 if (tasks.first(where: {
                     $0.itemID == productInfo.productID
                 }) == nil) {
-                    let task = LikedTable(id: productInfo.productID, title: productInfo.title, mallName: productInfo.mallName, lprice: productInfo.lprice, imageURL: productInfo.image, likedDate: Date(), like: true)
+                    let task = LikedTable(id: productInfo.productID, title: productInfo.noTagTitle, mallName: productInfo.mallName, lprice: productInfo.decimalPrice, imageURL: productInfo.image, likedDate: Date(), like: true)
                     
                     repository.createItem(task)
                 } else {
@@ -115,6 +159,7 @@ class DetailViewController: BaseViewController {
         title = "title"
         
         view.addSubview(itemDetailWebView)
+        view.addSubview(bottomToolbar)
         
         guard let productID = productID else {
             print("No productID")
@@ -150,6 +195,10 @@ class DetailViewController: BaseViewController {
         itemDetailWebView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        bottomToolbar.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
@@ -165,5 +214,42 @@ extension DetailViewController {
 //            title = "Error"
 //        }
 //    }
+    
+    @objc func reloadButtonClicked() {
+        itemDetailWebView.reload()
+    }
+    
+    @objc func stopButtonClicked() {
+        itemDetailWebView.stopLoading()
+        
+    }
+    
+    @objc func goBackButtonClicked() {
+        if itemDetailWebView.canGoBack {
+            itemDetailWebView.goBack()
+        }
+    }
+    
+    @objc func goForwardButtonClicked() {
+        if itemDetailWebView.canGoForward {
+            itemDetailWebView.goForward()
+        }
+    }
+    
+    
+    private func setupToolBar() {
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        bottomToolbar.items = [
+            flexibleSpace,
+            backBarButton,
+            flexibleSpace,
+            reloadBarButton,
+            flexibleSpace,
+            stopBarButton,
+            flexibleSpace,
+            forwardBarButton,
+            flexibleSpace
+        ]
+    }
     
 }
