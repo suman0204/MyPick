@@ -29,6 +29,10 @@ struct ItemResult: Codable {
     
     var like: Bool = false
     
+    var noTagTitle: String {
+        return title.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case title, link, image, lprice, hprice, mallName
         case productID = "productId"

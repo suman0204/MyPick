@@ -65,18 +65,13 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
     
     let likeButton = {
         let view = UIButton()
-        view.setImage(UIImage(systemName: "heart"), for: .normal)
+//        view.setImage(UIImage(systemName: "heart"), for: .normal)
         view.tintColor = .black
         view.backgroundColor = .white
         return view
     }()
 
 
-    
-    override func layoutSubviews() { //mainview를 따로 만들어야하나?...
-        super.layoutSubviews()
-        likeButton.layer.cornerRadius = likeButton.bounds.width / 2
-    }
     
     func inputAPIData(data: ItemResult) {
         imageView.kf.setImage(with: URL(string: data.image))
@@ -85,13 +80,13 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
 
         priceLabel.text = decimalFormat(price: Int(data.lprice) ?? 0)
         
-        like = data.like
-        
-        if !like {
-            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        } else {
-            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        }
+//        like = data.like
+//        
+//        if !like {
+//            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+//        } else {
+//            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        }
     }
 
     func inputRealmData(data: LikedTable) {
@@ -109,6 +104,15 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
     }
+      
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print(#function)
+        print(likeButton.bounds.width / 2)
+        likeButton.layer.cornerRadius = likeButton.bounds.width / 2
+        
+
+    }
     
     override func configureCell() {
         [imageView, mallNameLabel, titleLabel, priceLabel, likeButton].forEach {
@@ -116,9 +120,11 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
         }
         
         likeButton.becomeFirstResponder()
+
     }
     
     override func setConstraints() {
+        print(#function)
         imageView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
             make.size.equalTo(contentView.snp.width)
@@ -145,9 +151,19 @@ class SearchCollectionViewCell: BaseCollectionViewCell {
             make.bottom.equalTo(imageView.snp.bottom).offset(-8)
             
         }
-        
-        
+        print(likeButton.bounds.width / 2)
     }
+    
+//    @objc func likeButtonClicked(toTrue: (()-> Void), toFalse: (() -> Void)) {
+//        print(likeButton.currentImage)
+//        if likeButton.currentImage == UIImage(systemName: "heart") {
+//            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//            toTrue()
+//        } else {
+//            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+//            toFalse()
+//        }
+//    }
 }
 
 extension SearchCollectionViewCell {

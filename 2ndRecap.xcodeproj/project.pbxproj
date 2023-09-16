@@ -26,7 +26,6 @@
 		8B6CC2852AAB2559002FA6A0 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2842AAB2559002FA6A0 /* SearchCollectionViewCell.swift */; };
 		8B6CC2872AAB28B5002FA6A0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2862AAB28B5002FA6A0 /* Item.swift */; };
 		8B6CC2892AAC403C002FA6A0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2882AAC403C002FA6A0 /* SearchViewController.swift */; };
-		8B6CC28B2AAC47C6002FA6A0 /* LikedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC28A2AAC47C6002FA6A0 /* LikedViewController.swift */; };
 		8B6CC28D2AAC537F002FA6A0 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC28C2AAC537F002FA6A0 /* ReusableViewProtocol.swift */; };
 		8B6CC2932AAC8A95002FA6A0 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2922AAC8A95002FA6A0 /* SortType.swift */; };
 		8B6CC2952AAC8B65002FA6A0 /* GrayBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2942AAC8B65002FA6A0 /* GrayBorderButton.swift */; };
@@ -39,6 +38,9 @@
 		8B6CC2DB2AAEDBF1002FA6A0 /* LikedTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2DA2AAEDBF1002FA6A0 /* LikedTable.swift */; };
 		8B6CC2DD2AAF199A002FA6A0 /* LikedTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2DC2AAF199A002FA6A0 /* LikedTableRepository.swift */; };
 		8B6CC2DF2AAF25CC002FA6A0 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */; };
+		8B6CC3242AB57533002FA6A0 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC3232AB57533002FA6A0 /* ViewType.swift */; };
+		8B6CC3282AB5AAA4002FA6A0 /* LikedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC3272AB5AAA4002FA6A0 /* LikedEmptyView.swift */; };
+		8B6CC32A2AB5ABDF002FA6A0 /* LikedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CC3292AB5ABDF002FA6A0 /* LikedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +61,6 @@
 		8B6CC2842AAB2559002FA6A0 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B6CC2862AAB28B5002FA6A0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		8B6CC2882AAC403C002FA6A0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		8B6CC28A2AAC47C6002FA6A0 /* LikedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedViewController.swift; sourceTree = "<group>"; };
 		8B6CC28C2AAC537F002FA6A0 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		8B6CC2922AAC8A95002FA6A0 /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
 		8B6CC2942AAC8B65002FA6A0 /* GrayBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayBorderButton.swift; sourceTree = "<group>"; };
@@ -71,6 +72,9 @@
 		8B6CC2DA2AAEDBF1002FA6A0 /* LikedTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedTable.swift; sourceTree = "<group>"; };
 		8B6CC2DC2AAF199A002FA6A0 /* LikedTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedTableRepository.swift; sourceTree = "<group>"; };
 		8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		8B6CC3232AB57533002FA6A0 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
+		8B6CC3272AB5AAA4002FA6A0 /* LikedEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedEmptyView.swift; sourceTree = "<group>"; };
+		8B6CC3292AB5ABDF002FA6A0 /* LikedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LikedViewController.swift; path = ../../../../../../../../.Trash/LikedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +173,8 @@
 		8B6CC2722AAA2EE0002FA6A0 /* Like */ = {
 			isa = PBXGroup;
 			children = (
-				8B6CC28A2AAC47C6002FA6A0 /* LikedViewController.swift */,
+				8B6CC3292AB5ABDF002FA6A0 /* LikedViewController.swift */,
+				8B6CC3272AB5AAA4002FA6A0 /* LikedEmptyView.swift */,
 			);
 			path = Like;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				8B6CC2982AACDAC5002FA6A0 /* URL+Extension.swift */,
 				8B6CC29F2AAE1A6D002FA6A0 /* String+Extension.swift */,
 				8B6CC2DE2AAF25CC002FA6A0 /* FileManager+Extension.swift */,
+				8B6CC3232AB57533002FA6A0 /* ViewType.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -303,13 +309,15 @@
 				8B6CC2A02AAE1A6D002FA6A0 /* String+Extension.swift in Sources */,
 				8B6CC26E2AAA2E61002FA6A0 /* BaseViewController.swift in Sources */,
 				8B6CC24B2AAA278D002FA6A0 /* ViewController.swift in Sources */,
+				8B6CC3242AB57533002FA6A0 /* ViewType.swift in Sources */,
 				8B6CC2952AAC8B65002FA6A0 /* GrayBorderButton.swift in Sources */,
-				8B6CC28B2AAC47C6002FA6A0 /* LikedViewController.swift in Sources */,
+				8B6CC32A2AB5ABDF002FA6A0 /* LikedViewController.swift in Sources */,
 				8B6CC2472AAA278D002FA6A0 /* AppDelegate.swift in Sources */,
 				8B6CC2A22AAE3C4C002FA6A0 /* WhiteButton.swift in Sources */,
 				8B6CC2682AAA28EE002FA6A0 /* APIKey.swift in Sources */,
 				8B6CC29E2AADFAD3002FA6A0 /* DetailViewController.swift in Sources */,
 				8B6CC2812AAB21D8002FA6A0 /* Constants.swift in Sources */,
+				8B6CC3282AB5AAA4002FA6A0 /* LikedEmptyView.swift in Sources */,
 				8B6CC2992AACDAC5002FA6A0 /* URL+Extension.swift in Sources */,
 				8B6CC2DD2AAF199A002FA6A0 /* LikedTableRepository.swift in Sources */,
 				8B6CC2832AAB2235002FA6A0 /* Color.swift in Sources */,
@@ -466,8 +474,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB66AY8DJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = 2ndRecap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "홍수만";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -494,8 +504,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB66AY8DJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = 2ndRecap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "홍수만";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

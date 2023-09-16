@@ -16,7 +16,9 @@ class SearchViewController: BaseViewController {
     
     var itemResultList: [ItemResult] = []
     
-    private var page = 1
+    private var start = 1
+    
+    var searchQuery: String?
     
     var sortType: SortType = SortType.sim
     
@@ -82,13 +84,48 @@ class SearchViewController: BaseViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         searchBar.delegate = self
-        
+       
         searchResultsCollectionView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         
         tasks = repository.fetch()
         print(tasks)
         addTargetSortButton()
         
+        hideKeyboard()
+        
+        print("검색화면")
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viedidappear")
+        searchResultsCollectionView.reloadData()
+    }
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+////        view.endEditing(true)
+//        searchBar.resignFirstResponder()
+//        print("touchBegan")
+//    }
+//
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
+  
+    
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        searchBar.resignFirstResponder()
     }
     
     override func configureView() {
@@ -120,6 +157,7 @@ class SearchViewController: BaseViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(15)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        print("vc setconstr")
     }
 }
 
@@ -128,15 +166,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             print(itemResultList.count)
-            if itemResultList.count - 1 == indexPath.item && page < 1000 {
-                page += 1
-                print("page: \(page)")
+            if itemResultList.count - 1 == indexPath.item && start < 1000 {
+                start += 30
+                print("start: \(start)")
                 guard let query = searchBar.text else {
                     //검색어 입력 안내 alert 띄우기
                     return
                 }
                 
-                ShoppingAPIManager.shared.callRequest(query: query, page: page, sort: sortType) { result in
+                ShoppingAPIManager.shared.callRequest(query: query, start: start, sort: sortType) { result in
                     
                     print("pagination result")
                     print(result)
@@ -157,6 +195,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
+        print("print layout")
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 15
         layout.minimumInteritemSpacing = 15
@@ -173,16 +212,24 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.reuseIdentifier, for: indexPath) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
+        print("cellforitemat")
+        let data = itemResultList[indexPath.item]
 
-        var data = itemResultList[indexPath.item]
-//        print("cellforitemat")
-//        print(data)
-        
+        if (tasks.first(where: { $0.itemID == data.productID}) != nil) {
+            print("잇어요")
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            print("없어요")
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+
+        }
+
         cell.inputAPIData(data: data)
-        
-        cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
 
+        cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         
+        print(#function)
+        print(cell.likeButton.bounds.width / 2)
         return cell
     }
     
@@ -190,42 +237,70 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let vc = DetailViewController()
         let data = itemResultList[indexPath.item]
         
+        vc.productInfo = data
+//        vc.viewType = .searchView
         vc.navTitle = data.title.removeTags()
         vc.productID = data.productID
         
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    
+//    @objc func likeButtonClickedFirst(_ sender: UIButton) {
+//        print("like")
+//
+//        if let cell = sender.superview?.superview as? SearchCollectionViewCell,
+//           let indexPath = searchResultsCollectionView.indexPath(for: cell) {
+//            var selectedItem = itemResultList[indexPath.item]
+//            selectedItem.like.toggle() // like 상태를 반전시킴
+//            print("dd",selectedItem)
+//            itemResultList[indexPath.item] = selectedItem
+//
+//            cell.like = selectedItem.like
+//
+//            if !selectedItem.like {
+//                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+//
+//                repository.deleteItem(id: selectedItem.productID)
+//            } else {
+//                cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//
+//                let path = documentDirectoryPath()
+//                print(path)
+//
+//                let task = LikedTable(id: selectedItem.productID, title: selectedItem.title, mallName: selectedItem.mallName, lprice: selectedItem.lprice, imageURL: selectedItem.image, likedDate: Date(), like: selectedItem.like)
+//
+//                repository.createItem(task)
+////                LikedViewController().searchResultsCollectionView.reloadData()
+//            }
+////            searchResultsCollectionView.reloadItems(at: [indexPath])
+//
+//        }
+//
+//    }
+    
     @objc func likeButtonClicked(_ sender: UIButton) {
-        print("like")
+        print("likebuttonclicked")
         if let cell = sender.superview?.superview as? SearchCollectionViewCell,
            let indexPath = searchResultsCollectionView.indexPath(for: cell) {
-            var selectedItem = itemResultList[indexPath.item]
-            selectedItem.like.toggle() // like 상태를 반전시킴
-            print("dd",selectedItem)
-            itemResultList[indexPath.item] = selectedItem
-
-            cell.like = selectedItem.like
             
-            if !selectedItem.like {
-                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                
-                repository.deleteItem(id: selectedItem.productID)
-                LikedViewController().searchResultsCollectionView.reloadData()
-            } else {
+            let selectedItem = itemResultList[indexPath.item]
+
+            if cell.likeButton.currentImage == UIImage(systemName: "heart") {
+                print("heart")
                 cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 
-                let path = documentDirectoryPath()
-                print(path)
-                
-                let task = LikedTable(id: selectedItem.productID, title: selectedItem.title, mallName: selectedItem.mallName, lprice: selectedItem.lprice, imageURL: selectedItem.image, likedDate: Date(), like: selectedItem.like)
+                let task = LikedTable(id: selectedItem.productID, title: selectedItem.title, mallName: selectedItem.mallName, lprice: selectedItem.lprice, imageURL: selectedItem.image, likedDate: Date(), like: true)
                 
                 repository.createItem(task)
-            }
-//            searchResultsCollectionView.reloadItems(at: [indexPath])
 
+            } else {
+                print("fill")
+                
+                cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                repository.deleteItem(id: selectedItem.productID)
+            }
         }
-        
     }
     
     
@@ -241,7 +316,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        page = 1
+        start = 1
         
         itemResultList.removeAll()
         
@@ -250,7 +325,14 @@ extension SearchViewController: UISearchBarDelegate {
             requestInsertWord()
             return
         }
-        ShoppingAPIManager.shared.callRequest(query: query, page: page, sort: SortType.sim) { result in
+        
+        searchQuery = query
+        
+        guard let searchQuery = searchQuery else {
+            return
+        }
+        
+        ShoppingAPIManager.shared.callRequest(query: searchQuery, start: start, sort: SortType.sim) { result in
             print(result)
             
             if result.items.count == 0 {
@@ -259,7 +341,8 @@ extension SearchViewController: UISearchBarDelegate {
             } else {
                 self.itemResultList = result.items
                 self.searchResultsCollectionView.reloadData()
-                self.changeToWhiteButton(button: self.simButton)
+                self.scrollToTop()
+                self.changeButtonStyle(toWhite: self.simButton, toBlack: [self.dateButton, self.ascButton, self.dscButton])
             }
             
         } failure: {
@@ -268,14 +351,32 @@ extension SearchViewController: UISearchBarDelegate {
 
             print("Error")
         }
+        
+        searchBar.resignFirstResponder()
+        
+        print("searchbuttonClicked")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        searchBar.resignFirstResponder()
+//        itemResultList.removeAll()
         searchResultsCollectionView.reloadData()
     }
+    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        if searchBar.text == "" {
+//            itemResultList.removeAll()
+//            searchResultsCollectionView.reloadData()
+//        }
+//    }
 }
 
+extension SearchViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
 
 extension SearchViewController {
     private func decimalFormat(price: Int) -> String? {
@@ -288,17 +389,21 @@ extension SearchViewController {
         
         changeButtonStyle(toWhite: simButton, toBlack: [dateButton, ascButton, dscButton])
 
-        guard let query = searchBar.text else {
-            //검색어 비어있을 때 입력 안내 alert 띄우기
-            requestInsertWord()
+//        guard let query = searchBar.text else {
+//            //검색어 비어있을 때 입력 안내 alert 띄우기
+//            requestInsertWord()
+//            return
+//        }
+        
+        guard let searchQuery = searchQuery else {
             return
         }
-        if query == "" {
+        if searchQuery == "" {
             requestInsertWord()
         } else {
             sortType = SortType.sim
             
-            ShoppingAPIManager.shared.callRequest(query: query, page: page, sort: sortType) { result in
+            ShoppingAPIManager.shared.callRequest(query: searchQuery, start: start, sort: sortType) { result in
                 print(result)
                 if result.items.count == 0 {
                     //검색 결과 0개이면 결과 없다고 alert 띄우기
@@ -322,17 +427,22 @@ extension SearchViewController {
         
         changeButtonStyle(toWhite: dateButton, toBlack: [simButton, ascButton, dscButton])
         
-        guard let query = searchBar.text else {
-            //검색어 비어있을 때 입력 안내 alert 띄우기
-            requestInsertWord()
+//        guard let query = searchBar.text else {
+//            //검색어 비어있을 때 입력 안내 alert 띄우기
+//            requestInsertWord()
+//            return
+//        }
+        
+        guard let searchQuery = searchQuery else {
             return
         }
-        if query == "" {
+        
+        if searchQuery == "" {
             requestInsertWord()
         } else {
             sortType = SortType.date
             
-            ShoppingAPIManager.shared.callRequest(query: query, page: page, sort: sortType) { result in
+            ShoppingAPIManager.shared.callRequest(query: searchQuery, start: start, sort: sortType) { result in
                 print(result)
                 if result.items.count == 0 {
                     //검색 결과 0개이면 결과 없다고 alert 띄우기
@@ -356,18 +466,22 @@ extension SearchViewController {
         
         changeButtonStyle(toWhite: ascButton, toBlack: [simButton, dateButton, dscButton])
         
-        guard let query = searchBar.text else {
-            //검색어 비어있을 때 입력 안내 alert 띄우기
-            requestInsertWord()
+//        guard let query = searchBar.text else {
+//            //검색어 비어있을 때 입력 안내 alert 띄우기
+//            requestInsertWord()
+//            return
+//        }
+        
+        guard let searchQuery = searchQuery else {
             return
         }
         
-        if query == "" {
+        if searchQuery == "" {
             requestInsertWord()
         } else {
             sortType = SortType.asc
             
-            ShoppingAPIManager.shared.callRequest(query: query, page: page, sort: sortType) { result in
+            ShoppingAPIManager.shared.callRequest(query: searchQuery, start: start, sort: sortType) { result in
                 print(result)
                 if result.items.count == 0 {
                     //검색 결과 0개이면 결과 없다고 alert 띄우기
@@ -391,16 +505,21 @@ extension SearchViewController {
         
         changeButtonStyle(toWhite: dscButton, toBlack: [simButton, dateButton, ascButton])
         
-        guard let query = searchBar.text else {
-            //검색어 비어있을 때 입력 안내 alert 띄우기
+//        guard let query = searchBar.text else {
+//            //검색어 비어있을 때 입력 안내 alert 띄우기
+//            return
+//        }
+        
+        guard let searchQuery = searchQuery else {
             return
         }
-        if query == "" {
+        
+        if searchQuery == "" {
             requestInsertWord()
         } else {
             sortType = SortType.dsc
             
-            ShoppingAPIManager.shared.callRequest(query: query, page: page, sort: sortType) { result in
+            ShoppingAPIManager.shared.callRequest(query: searchQuery, start: start, sort: sortType) { result in
                 print(result)
                 if result.items.count == 0 {
                     //검색 결과 0개이면 결과 없다고 alert 띄우기
