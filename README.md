@@ -2,11 +2,13 @@
 
 
 **네이버 쇼핑을 통한 상품 검색 및 좋아요 기능으로 나만의 위시리스트 저장 앱**
+<p align="center">
+<img src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/1ff58af8-1e51-4427-8d67-f2dd3da80c2b" width="20%" height="30%">
+<img src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/78041d0b-0b87-4d37-af42-42ba6d875b49" width="20%" height="30%">
+<img src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/53d3b5cb-84e1-47fe-b1a6-44196ae5d589" width="20%" height="30%">
+<img src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/82ed7625-8f77-4890-a1ec-3d90922f2004" width="20%" height="30%">
+</p>
 
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 00 47 42](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/1ff58af8-1e51-4427-8d67-f2dd3da80c2b)|
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01 08 23](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/78041d0b-0b87-4d37-af42-42ba6d875b49)|
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01 10 38](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/53d3b5cb-84e1-47fe-b1a6-44196ae5d589)|
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01 10 49](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/82ed7625-8f77-4890-a1ec-3d90922f2004)
 
 ## 프로젝트 소개
 
