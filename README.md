@@ -51,7 +51,7 @@
 - Snapkit, Alamofire, Kingfisher, Realm
 
 ---
-<br/><br/>
+<br/>
 ## 트러블 슈팅
 
 
@@ -100,9 +100,9 @@ viewWillDisapear에서 좋아요 취소한 목록을 업데이트 해주고 좋�
     }
 ```
 
-
+<br/>
 ---
-
+<br/>
 
 ### 2. 이미지 다운로드 시 과도한 메모리 사용
 
