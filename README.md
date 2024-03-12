@@ -5,11 +5,12 @@
 
 ![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 00 47 42](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/1ff58af8-1e51-4427-8d67-f2dd3da80c2b)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e59db1b-691d-487c-9eca-b5f25e2289b1/27f4be64-9494-4d0f-8167-bfb156805019/Untitled.png)
+![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01 08 23](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/78041d0b-0b87-4d37-af42-42ba6d875b49)
 
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01.10.38.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e59db1b-691d-487c-9eca-b5f25e2289b1/c76024a8-66d8-44e1-8b71-cf1379ab585f/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-02-13_at_01.10.38.png)
+![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01 10 38](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/53d3b5cb-84e1-47fe-b1a6-44196ae5d589)
 
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01.10.49.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e59db1b-691d-487c-9eca-b5f25e2289b1/6892585d-0886-4cd0-9862-b2035b5ddd1e/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-02-13_at_01.10.49.png)
+
+![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 01 10 49](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/82ed7625-8f77-4890-a1ec-3d90922f2004)
 
 ## 프로젝트 소개
 
