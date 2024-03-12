@@ -1,4 +1,7 @@
-![MyPick](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/2ce73bbc-c558-40aa-aa67-3337eab0c526)
+<p align="left">
+  <img width="100" alt="image" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/2ce73bbc-c558-40aa-aa67-3337eab0c526">
+</p>
+
 # MyPick
 
 
