@@ -3,7 +3,7 @@
 
 **네이버 쇼핑을 통한 상품 검색 및 좋아요 기능으로 나만의 위시리스트 저장 앱**
 
-![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 00.47.42.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e59db1b-691d-487c-9eca-b5f25e2289b1/84ec042a-a000-47a0-a347-c4334ae6e70f/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-02-13_at_00.47.42.png)
+![Simulator Screenshot - iPhone 15 Pro - 2024-02-13 at 00 47 42](https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/1ff58af8-1e51-4427-8d67-f2dd3da80c2b)
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2e59db1b-691d-487c-9eca-b5f25e2289b1/27f4be64-9494-4d0f-8167-bfb156805019/Untitled.png)
 
