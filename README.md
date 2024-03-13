@@ -131,7 +131,7 @@ func inputAPIData(data: ItemResult) {
 
 Kingfisher의 이미지 캐싱과 다운샘플링 기능을 통해 이미지 데이터 리소스를 최소화하였고 이를 통해 과도한 메모리 사용 문제 해결
 
-<img width="1292" alt="스크린샷 2024-02-13 오전 12 42 50" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/e07828b2-4565-4ecc-9cbf-4a20bb647de6">
+<img width="646" alt="스크린샷 2024-02-13 오전 12 42 50" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/e07828b2-4565-4ecc-9cbf-4a20bb647de6">
 
 ```swift
 func inputAPIData(data: ItemResult) {
