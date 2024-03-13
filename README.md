@@ -45,7 +45,6 @@
 
 > 기술 스택
 > 
-- Swift
 - UIKit, Webkit
 - MVC, Repository
 - Snapkit, Alamofire, Kingfisher, Realm
