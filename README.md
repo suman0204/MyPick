@@ -115,7 +115,7 @@ viewWillDisapear에서 좋아요 취소한 목록을 업데이트 해주고 좋�
 
 Kingfisher를 통해 API에서 받아오는 이미지를 셀에 보여주는 과정에서 과도한 메모리 사용이 발생
 
-<img width="1392/2" alt="스크린샷 2024-02-13 오전 12 32 39" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/c222b24c-bf50-47ce-9050-41c86476485f">
+<img width="696" alt="스크린샷 2024-02-13 오전 12 32 39" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/c222b24c-bf50-47ce-9050-41c86476485f">
 
 ```swift
 func inputAPIData(data: ItemResult) {
