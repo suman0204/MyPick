@@ -61,7 +61,10 @@
 **문제**
 
 좋아요를 통해 저장된 상품 리스트에서 상품의 상세 뷰에 들어가서 좋아요를 취소한 뒤 화면 밖을 나가면 인덱스 오류 발생
-→ 좋아요한 상품의 좋아요 취소 시 viewDidDisappear에서 상품의 좋아요를 렘에서 삭제해서 갯수가 맞지않는 오류 발생
+
+<br/>
+
+→ 좋아요한 상품의 좋아요 취소 시 **viewDidDisappear**에서 상품의 좋아요를 렘에서 삭제해서 **인덱스가 맞지 않는** 오류 발생
 
 ```swift
     override func viewDidDisappear(_ animated: Bool) {
@@ -82,7 +85,7 @@
 
 **해결법**
 
-viewWillDisapear에서 좋아요 취소한 목록을 업데이트 해주고 좋아요한 상품 리스트 화면으로 이동시 인덱스 오류가 발생하지 않고 실시간으로 목록을 업데이트 됨
+**viewWillDisapear**에서 좋아요 취소한 목록을 업데이트 해주고 좋아요한 상품 리스트 화면으로 이동시 **인덱스 오류가 발생하지 않고** **실시간으로 목록이 업데이트** 됨
 
 ```swift
     override func viewWillDisapear(_ animated: Bool) {
@@ -112,7 +115,7 @@ viewWillDisapear에서 좋아요 취소한 목록을 업데이트 해주고 좋�
 
 **문제**
 
-Kingfisher를 통해 API에서 받아오는 이미지를 셀에 보여주는 과정에서 과도한 메모리 사용이 발생
+Kingfisher를 통해 API에서 받아오는 이미지를 셀에 보여주는 과정에서 **과도한 메모리 사용**이 발생
 
 <p align="center">
 <img width="646" alt="스크린샷 2024-02-13 오전 12 32 39" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/c222b24c-bf50-47ce-9050-41c86476485f">
@@ -130,7 +133,7 @@ func inputAPIData(data: ItemResult) {
 
 **해결법**
 
-Kingfisher의 이미지 캐싱과 다운샘플링 기능을 통해 이미지 데이터 리소스를 최소화하였고 이를 통해 과도한 메모리 사용 문제 해결
+Kingfisher의 **이미지 캐싱과 다운샘플링** 기능을 통해 이미지 데이터 **리소스를 최소화**하였고 이를 통해 과도한 **메모리 사용 문제 해결**
 
 <p align="center">
 <img width="646" alt="스크린샷 2024-02-13 오전 12 42 50" src="https://github.com/suman0204/SeSAC_2ndRecap/assets/18048754/e07828b2-4565-4ecc-9cbf-4a20bb647de6">
