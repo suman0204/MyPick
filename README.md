@@ -24,19 +24,19 @@
 
 ---
 
-> 기술 스택
-> 
-- UIKit(CodeBase), Webkit
-- MVC, Repository
-- Snapkit, Alamofire, Kingfisher, Realm
-
----
-
 > 앱 소개
 > 
 - 네이버 쇼핑 API 활용하여 상품 검색 및 페이지네이션
 - 데이터베이스를 활용한 좋아요 추가 / 제거
 - 좋아요한 상품 목록 검색
+
+---
+
+> 기술 스택
+> 
+- UIKit(CodeBase), Webkit
+- MVC, Repository
+- Snapkit, Alamofire, Kingfisher, Realm
 
 ---
 
