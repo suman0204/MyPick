@@ -16,6 +16,21 @@
 
 ## 프로젝트 소개
 
+> 개발 환경
+> 
+- 최소 버전 : iOS 13.0
+- 개발 인원: 1인
+- 개발 기간: 2023.09.07 ~ 2023.09.16
+
+---
+
+> 기술 스택
+> 
+- UIKit(CodeBase), Webkit
+- MVC, Repository
+- Snapkit, Alamofire, Kingfisher, Realm
+
+---
 
 > 앱 소개
 > 
@@ -32,22 +47,6 @@
 - **Repository Pattern**을 통한 **Realm** 추상화 및 상품 좋아요 추가 제거 기능
 - **Webkit**을 통한 제품 상세페이지 화면 렌더링
 - **Kingfisher**를 활용하여 이미지 비동기 다운로드 및 캐싱
-
----
-
-> 개발 환경
-> 
-- 최소 버전 : iOS 13.0
-- 개발 인원: 1인
-- 개발 기간: 2023.09.07 ~ 2023.09.16
-
----
-
-> 기술 스택
-> 
-- UIKit, Webkit
-- MVC, Repository
-- Snapkit, Alamofire, Kingfisher, Realm
 
 ---
 
